@@ -1,12 +1,18 @@
 import React from 'react';
 import logo from './images/logo.png';
 
-function App() {
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
+
+const App = () => {
   return (
-    <div>
-      <img src={logo} alt="logo" />
-    </div>
+    <Provider store={store}>
+      <div>
+        <img src={logo} alt="logo" />
+      </div>
+    </Provider>
   );
-}
+};
 
 export default App;
