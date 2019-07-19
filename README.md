@@ -11,8 +11,14 @@ To launch the project you will need the following in your PC :
 - Install [GIT](https://git-scm.com/downloads)
 - Install [NodeJs](https://nodejs.org/en/download/)
 - Install [VS Code](https://code.visualstudio.com/download)
+- Install [MongoDB](https://www.mongodb.com/download-center/community)
 - Clone this repository
 - Create a .env file with your variables like in [.env.example](./.env.example) file.
+
+### Database
+
+You have to launch MongoDB on you PC and put the environment variable 'DB_URL' in the [.env.example](./.env.example) file with your database name.
+The collection 'contact' will be automatically created in the first insert in your database.
 
 ## Run the code
 
