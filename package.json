@@ -1,0 +1,24 @@
+{
+  "name": "phonebook-wemanity",
+  "version": "1.0.0",
+  "description": "A phonebook for Wemanity",
+  "author": "Theo Fournier",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "npm-run-all -p server client"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.5",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1",
+    "npm-run-all": "^4.1.5"
+  }
+}
