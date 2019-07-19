@@ -8,7 +8,10 @@
     "start": "node server",
     "server": "nodemon server",
     "client": "npm start --prefix client",
-    "dev": "npm-run-all -p server client"
+    "dev": "npm-run-all -p server client",
+    "install-all": "npm-run-all -p install:api install:web",
+    "install:api": "npm install",
+    "install:web": "cd client && npm install"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
