@@ -25,6 +25,7 @@ app.use(morgan('tiny', {
 app.get('/api', (req, res) => {
   res.send('OK');
 });
+app.use('/api/contact', require('./routes/contact'));
 
 
 app.use(express.static(path.join(__dirname, "client/build")));
