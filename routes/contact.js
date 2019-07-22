@@ -45,17 +45,21 @@ router.post(
 // @route    GET api/contact
 // @desc     Get contacts
 router.get('/', async (req, res) => {
-  const { limit, skip, sort, sort_order } = req.query;
+  const { limit, skip, sort } = req.query;
 
   // MongoDB query
   const options = {
     skip: parseInt(skip),
     limit: parseInt(limit)
   };
-  if (sort && sort_order) {
-    options.sort = {
-      [sort]: sort_order
-    };
+  if (sort) {
+    const sortArr = sort.split(',');
+    const optionsSort = {};
+    for (const sortItem of sortArr) {
+      const [key, value] = sortItem.split(':');
+      optionsSort[key] = value || '1';
+    }
+    options.sort = optionsSort;
   }
 
   try {

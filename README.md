@@ -59,8 +59,7 @@ The API contains several endpoints:
   Query: {
     limit: int (maximum of contacts returned),
     skip: int (skip the first contacts),
-    sort: string (the attribute to sort the contact),
-    sort_order: 1 (sort asc) or -1 (sort desc),
+    sort: string (the attributes to sort the contacts) (format: key1:value1,key2:value2 - With key equal to a contact field and value equal to 1 for ASC or -1 for DESC),
   }
   Response: list of contacts
 
