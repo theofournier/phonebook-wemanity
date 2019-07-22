@@ -5,14 +5,20 @@ import {
   UPDATE_CONTACT,
   DELETE_CONTACT,
   CONTACT_LOADING,
-  CONTACT_ERROR
+  CONTACT_ERROR,
+  FILTER_CONTACTS
 } from './types';
+import { search, isEmpty } from '../utils/helper';
 
 // Get contacts
 export const getContacts = () => async dispatch => {
   dispatch(setLoading(true, 'contacts'));
   try {
-    const res = await axios.get('/api/contact');
+    const res = await axios.get('/api/contact', {
+      params: {
+        sort: 'firstName:1,lastName:1',
+      }
+    });
     dispatch({
       type: GET_CONTACTS,
       payload: res.data
@@ -93,3 +99,31 @@ export const setError = (hasFailed, status, message, field) => {
     }
   };
 }
+
+export const filterContacts = (
+  contacts,
+  searchValue,
+) => {
+  const searchKeys = !isEmpty(contacts) ? Object.keys(contacts[0]) : [];
+  let index = searchKeys.indexOf('_id');
+  if (index > -1) {
+    searchKeys.splice(index, 1);
+  }
+  index = searchKeys.indexOf('dateAdd');
+  if (index > -1) {
+    searchKeys.splice(index, 1);
+  }
+
+  return {
+    type: FILTER_CONTACTS,
+    payload: {
+      contactsFiltered:
+        search(
+          contacts,
+          searchValue,
+          searchKeys,
+        ),
+      searchValue,
+    },
+  };
+};
