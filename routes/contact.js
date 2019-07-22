@@ -37,7 +37,7 @@ router.post(
 
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Server error: new contact');
+      res.status(500).send('Server error');
     }
   }
 )
@@ -63,7 +63,7 @@ router.get('/', async (req, res) => {
     res.json(contacts);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error: get contacts');
+    res.status(500).send('Server Error');
   }
 });
 
