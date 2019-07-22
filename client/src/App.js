@@ -1,16 +1,29 @@
-import React from 'react';
-import logo from './images/logo.png';
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
+import Navbar from './components/navbar/Navbar';
+import { CssBaseline } from '@material-ui/core';
+import Home from './components/home/Home';
+import NewContact from './components/newContact/NewContact';
+import UpdateContact from './components/updateContact/UpdateContact';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <div>
-        <img src={logo} alt="logo" />
-      </div>
+      <Router>
+        <Fragment>
+          <CssBaseline />
+          <Navbar />
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/newcontact' component={NewContact} />
+            <Route exact path='/updatecontact' component={UpdateContact} />
+          </Switch>
+        </Fragment>
+      </Router>
     </Provider>
   );
 };
