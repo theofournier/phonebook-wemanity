@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { TextField, InputAdornment, IconButton } from '@material-ui/core';
 import SearchOutlined from '@material-ui/icons/SearchOutlined';
+import ClearOutlined from '@material-ui/icons/ClearOutlined';
 import { colors } from '../../utils/config';
+import { isEmpty } from '../../utils/helper';
 
 const styles = (theme) => ({
   textField: {
@@ -24,6 +26,10 @@ const SearchComponent = ({ classes, searchValue, searchFunction, label }) => {
     }
   };
 
+  const clear = () => {
+    searchFunction('');
+  }
+
   return (
     <TextField
       className={classes.textField}
@@ -35,6 +41,11 @@ const SearchComponent = ({ classes, searchValue, searchFunction, label }) => {
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
+            {!isEmpty(searchValue) ?
+              <IconButton onClick={clear}>
+                <ClearOutlined />
+              </IconButton>
+              : null}
             <IconButton onClick={(e) => searchFunction(searchValue)}>
               <SearchOutlined />
             </IconButton>
