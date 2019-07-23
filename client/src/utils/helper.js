@@ -9,6 +9,10 @@ export function isEmpty(value) {
   );
 }
 
+export function isValidPhone(phone) {
+  return phone.match('\\+[0-9]{2}\\s[0-9]{2}\\s[0-9]{6,}');
+}
+
 export function dateFormatting(dateStr) {
   return dateStr !== null && dateStr
     ? moment(dateStr).format('YYYY/MM/DD')

@@ -71,6 +71,18 @@ router.get('/', async (req, res) => {
   }
 });
 
+// @route    GET api/contact/:_id
+// @desc     Get contact by id
+router.get('/:_id', async (req, res) => {
+  try {
+    const contact = await Contact.findOne({ _id: req.params._id });
+    res.json(contact);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route    PUT api/contact/:_id
 // @desc     Edit a contact
 router.put(

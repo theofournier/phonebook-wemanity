@@ -1,5 +1,6 @@
 import {
   GET_CONTACTS,
+  GET_CONTACT,
   ADD_CONTACT,
   UPDATE_CONTACT,
   DELETE_CONTACT,
@@ -7,10 +8,12 @@ import {
   CONTACT_ERROR,
   FILTER_CONTACTS
 } from '../actions/types';
-import { isEmpty, search } from '../utils/helper';
+import { search } from '../utils/helper';
+import { contactSearchKeys } from '../utils/config';
 
 const initialState = {
   contacts: [],
+  contact: {},
   contactsFiltered: [],
   loading: {},
   errors: {},
@@ -21,24 +24,19 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_CONTACTS:
-      const searchKeys = !isEmpty(payload) ? Object.keys(payload[0]) : [];
-      let index = searchKeys.indexOf('_id');
-      if (index > -1) {
-        searchKeys.splice(index, 1);
-      }
-      index = searchKeys.indexOf('dateAdd');
-      if (index > -1) {
-        searchKeys.splice(index, 1);
-      }
-
       return {
         ...state,
         contacts: payload,
         contactsFiltered: search(
           payload,
           state.contactsSearchValue,
-          searchKeys,
+          contactSearchKeys,
         ),
+      }
+    case GET_CONTACT:
+      return {
+        ...state,
+        contact: payload,
       }
     case ADD_CONTACT:
       return {

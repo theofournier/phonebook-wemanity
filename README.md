@@ -63,6 +63,9 @@ The API contains several endpoints:
   }
   Response: list of contacts
 
+* GET api/contact/:_id: Get a contact by id
+  Response: One contact
+
 * PUT api/contact/:_id: Edit a contact
   Params: {
     _id: contact Mondgo ID

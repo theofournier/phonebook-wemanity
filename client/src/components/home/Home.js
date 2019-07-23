@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography, Button, List, Divider } from '@material-ui/core';
+import { Typography, List, Divider } from '@material-ui/core';
 import { getContacts, filterContacts } from '../../actions/contactAction';
-import { colors } from '../../utils/config';
 import SearchComponent from '../common/SearchComponent';
 import ContactItem from './ContactItem'
 import { isEmpty } from '../../utils/helper';
+import MyDefaultButton from '../common/MyDefaultButton';
+import MyCircularProgress from '../common/MyCircularProgress';
 
 const styles = (theme) => ({
   root: {
@@ -17,10 +18,10 @@ const styles = (theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('xs')]: {
       width: '80%',
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       width: '50%',
     },
   },
@@ -33,13 +34,6 @@ const styles = (theme) => ({
   },
   button: {
     margin: '0 0 20px',
-    borderRadius: 0,
-    borderColor: colors.primary,
-    color: colors.primary,
-    '&:hover': {
-      backgroundColor: colors.primary,
-      color: 'white',
-    }
   },
   countContainer: {
     width: '100%'
@@ -48,7 +42,9 @@ const styles = (theme) => ({
     margin: '10px 0',
     width: '100%',
     height: '400px',
-    overflow: 'auto'
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
   },
   contactsDivider: {
     margin: '10px 0'
@@ -77,6 +73,10 @@ const Home = ({ classes, getContacts, filterContacts, contact: { contactsSearchV
         ))}
       </List>
     );
+  } else if (loading.contacts) {
+    contactsListComponent = (
+      <MyCircularProgress />
+    );
   } else {
     contactsListComponent = (
       <Typography variant="h5">
@@ -91,14 +91,13 @@ const Home = ({ classes, getContacts, filterContacts, contact: { contactsSearchV
         <Typography className={classes.mainTitle} variant='h2'>Phone Book</Typography>
         <Typography variant='h5'>Consult, add and edit your contacts</Typography>
       </div>
-      <Button
+      <MyDefaultButton
         className={classes.button}
-        variant='outlined'
         to='newcontact'
         component={Link}
       >
         Add Contact
-      </Button>
+      </MyDefaultButton>
       <SearchComponent
         label='Search a contact'
         searchValue={contactsSearchValue}

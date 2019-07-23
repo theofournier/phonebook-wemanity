@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography, IconButton } from '@material-ui/core';
+import { Typography, IconButton, MenuItem, ListItemIcon, Divider } from '@material-ui/core';
 import EditOutlined from '@material-ui/icons/EditOutlined';
+import DeleteOutlined from '@material-ui/icons/DeleteOutlined';
+import MoreVertOutlined from '@material-ui/icons/MoreVertOutlined';
 import { dateFormatting } from '../../utils/helper';
 import ContactIcon from './ContactIcon';
 import { colors } from '../../utils/config';
+import MyToggleMenu from '../common/MyToggleMenu';
+import DialogConfirmation from '../common/DialogConfirmation';
+import { deleteContact, getContacts } from '../../actions/contactAction';
 
 const styles = (theme) => ({
   mainContainer: {
@@ -26,19 +32,109 @@ const styles = (theme) => ({
   nameText: {
     fontWeight: 600
   },
-  editContainer: {
+  buttonContainer: {
     position: 'absolute',
-    right: '10px'
+    right: '10px',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
   },
-  editIcon: {
+  buttonCollapseContainer: {
+    position: 'absolute',
+    right: '10px',
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
+  },
+  buttonIcon: {
     color: colors.primary,
     height: 30,
     width: 30,
   },
+  iconMenu: {
+    color: colors.primary,
+    height: 20,
+    width: 20,
+  },
 });
 
-const ContactItem = ({ classes, data: { firstName, lastName, phone, dateAdd } }) => {
+const ContactItem = ({ classes, deleteContact, getContacts, data: { _id, firstName, lastName, phone, dateAdd } }) => {
+  const [anchorElContact, setAnchorElContact] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+
   const initialName = (firstName ? firstName[0] : '') + ' ' + (lastName ? lastName[0] : '');
+
+  const onDelete = () => {
+    deleteContact(_id, getContacts);
+    handleCloseDialog();
+  }
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const handleOpenContactMenu = (e) => {
+    setAnchorElContact(e.currentTarget);
+  };
+
+  const handleCloseContactMenu = () => {
+    setAnchorElContact(null);
+  };
+
+  const renderMenuContact = () => {
+    return (
+      <MyToggleMenu
+        handleClose={() => handleCloseContactMenu()}
+        isMenuOpen={Boolean(anchorElContact)}
+        anchorEl={anchorElContact}
+      >
+        <>
+          <MenuItem
+            to={{
+              pathname: `/updatecontact/${_id}`,
+              state: { _id, firstName, lastName, phone, dateAdd },
+            }}
+            component={Link}
+          >
+            <ListItemIcon>
+              <EditOutlined className={classes.iconMenu} />
+            </ListItemIcon>
+            <Typography variant="subtitle2">
+              Edit
+            </Typography>
+          </MenuItem>
+          <Divider />
+          <MenuItem
+            onClick={() => { handleOpenDialog(); handleCloseContactMenu(); }}
+          >
+            <ListItemIcon>
+              <DeleteOutlined className={classes.iconMenu} />
+            </ListItemIcon>
+            <Typography variant="subtitle2">
+              Delete
+            </Typography>
+          </MenuItem>
+        </>
+      </MyToggleMenu>
+    );
+  }
+
+  const renderDialog = () => {
+    return (
+      <DialogConfirmation
+        handleCancel={handleCloseDialog}
+        handleConfirm={onDelete}
+        dialogOpen={openDialog}
+        title='Confirm delete contact'
+        textContent={`Do you want delete the contact ${firstName} ${lastName}?`}
+      />
+    );
+  }
+
   return (
     <div className={classes.mainContainer}>
       <div className={classes.iconContainer}>
@@ -57,14 +153,31 @@ const ContactItem = ({ classes, data: { firstName, lastName, phone, dateAdd } })
           <Typography variant='caption'>Added the: {dateFormatting(dateAdd)}</Typography>
         </div>
       </div>
-      <div className={classes.editContainer}>
+      <div className={classes.buttonContainer}>
         <IconButton
-          to='/updatecontact'
+          to={{
+            pathname: `/updatecontact/${_id}`,
+            state: { _id, firstName, lastName, phone, dateAdd },
+          }}
           component={Link}
         >
-          <EditOutlined className={classes.editIcon} />
+          <EditOutlined className={classes.buttonIcon} />
+        </IconButton>
+        <IconButton
+          onClick={handleOpenDialog}
+        >
+          <DeleteOutlined className={classes.buttonIcon} />
         </IconButton>
       </div>
+      <div className={classes.buttonCollapseContainer}>
+        <IconButton
+          onClick={handleOpenContactMenu}
+        >
+          <MoreVertOutlined className={classes.buttonIcon} />
+        </IconButton>
+      </div>
+      {renderMenuContact()}
+      {renderDialog()}
     </div>
   )
 }
@@ -73,4 +186,11 @@ ContactItem.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ContactItem);
+const mapStateToProps = state => ({
+  contact: state.contact
+});
+
+export default connect(
+  mapStateToProps,
+  { deleteContact, getContacts }
+)(withStyles(styles)(ContactItem));

@@ -9,6 +9,7 @@ import { CssBaseline } from '@material-ui/core';
 import Home from './components/home/Home';
 import NewContact from './components/newContact/NewContact';
 import UpdateContact from './components/updateContact/UpdateContact';
+import Alert from './components/common/Alert';
 
 const App = () => {
   return (
@@ -17,10 +18,11 @@ const App = () => {
         <Fragment>
           <CssBaseline />
           <Navbar />
+          <Alert />
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/newcontact' component={NewContact} />
-            <Route exact path='/updatecontact' component={UpdateContact} />
+            <Route exact path='/updatecontact/:_id' component={UpdateContact} />
           </Switch>
         </Fragment>
       </Router>
