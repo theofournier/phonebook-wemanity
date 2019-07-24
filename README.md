@@ -40,7 +40,8 @@ Runs the Express server API and the react project.
 
 The API contains several endpoints:
 
-* POST api/contact: Add a new contact
+* **POST api/contact**: Add a new contact
+  ```
   Body: {
     firstName: string, required,
     lastName: string, required,
@@ -54,19 +55,25 @@ The API contains several endpoints:
         "phone": "+XX XX XXXXXX",
         "dateAdd": "YYYY-MM-DDTHH:mm:SS.sssZ"
     }
+  ```
 
-* GET api/contact: Get contacts
+* **GET api/contact**: Get contacts
+  ```
   Query: {
     limit: int (maximum of contacts returned),
     skip: int (skip the first contacts),
     sort: string (the attributes to sort the contacts) (format: key1:value1,key2:value2 - With key equal to a contact field and value equal to 1 for ASC or -1 for DESC),
   }
   Response: list of contacts
+  ```
 
-* GET api/contact/:_id: Get a contact by id
+* **GET api/contact/:_id**: Get a contact by id
+  ```
   Response: One contact
+  ```
 
-* PUT api/contact/:_id: Edit a contact
+* **PUT api/contact/:_id**: Edit a contact
+  ```
   Params: {
     _id: contact Mondgo ID
   }
@@ -76,12 +83,15 @@ The API contains several endpoints:
     phone: string, required, format '+XX XX XXXXXX'
   }
   Response: the edited contact
+  ```
 
-* DELETE api/contact/:_id: Delete a contact
+* **DELETE api/contact/:_id**: Delete a contact
+  ```
   Params: {
     _id: contact Mondgo ID
   }
   Response: the deleted contact
+  ```
 
 ## Folder Structure
 

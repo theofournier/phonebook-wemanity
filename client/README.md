@@ -8,7 +8,7 @@ This README is about the Front End part
 
 ## How to install and run the code
 
-Follow the instructions in the global [README](../README.md)]
+Follow the instructions in the global [README](../README.md)
 
 
 
