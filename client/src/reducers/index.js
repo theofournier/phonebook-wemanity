@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import contactReducer from './contactReducer';
-import alert from './alert';
+import alertReducer from './alertReducer';
 
 export default combineReducers({
   contact: contactReducer,
-  alert: alert
+  alert: alertReducer
 });

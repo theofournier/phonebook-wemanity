@@ -11,7 +11,7 @@ import {
 } from './types';
 import { search } from '../utils/helper';
 import { contactSearchKeys } from '../utils/config';
-import { setAlert } from './alert';
+import { setAlert } from './alertAction';
 
 // Get contacts
 export const getContacts = () => async dispatch => {

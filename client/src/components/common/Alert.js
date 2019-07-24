@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Snackbar } from '@material-ui/core';
-import { removeAlert } from '../../actions/alert';
+import { removeAlert } from '../../actions/alertAction';
 import MySnackbarContent from './MySnackbarContent';
 
 const Alert = ({ alert, removeAlert }) => {
