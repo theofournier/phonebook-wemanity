@@ -99,3 +99,15 @@ phonebook-wemanity/
   package.json --> dependencies and scripts
   server.js --> Express server to serve the app, execute functions from 
 ```
+
+
+## Libraries
+
+### Express
+HTTP server framework to build a REST API.
+
+### Mongoose
+Request MongoDB.
+
+### Moment
+A library to manipulate date and time easily.
