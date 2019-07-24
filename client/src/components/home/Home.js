@@ -55,6 +55,7 @@ const styles = (theme) => ({
 });
 
 const Home = ({ classes, getContacts, filterContacts, contact: { contactsSearchValue, contacts, contactsFiltered, loading, errors } }) => {
+  // Get contacts on component mount
   useEffect(() => {
     getContacts();
   }, [getContacts]);

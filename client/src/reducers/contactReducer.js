@@ -27,6 +27,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         contacts: payload,
+        // Research with the new contacts list
         contactsFiltered: search(
           payload,
           state.contactsSearchValue,

@@ -38,6 +38,7 @@ const styles = (theme) => ({
 const NewContact = ({ classes, addContact, contact: { loading, errors } }) => {
   const [backHome, setBackHome] = useState(false);
 
+  // When click on cancel button, change state and Redirect
   if (backHome) {
     return <Redirect to='/' />
   }

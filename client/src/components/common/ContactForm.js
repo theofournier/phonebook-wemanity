@@ -39,6 +39,8 @@ const styles = (theme) => ({
   }
 });
 
+// Component to add or edit a contact depends of the data and onSave func in props
+
 const ContactForm = ({ classes, data, onSave, onCancel, progress }) => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -58,6 +60,7 @@ const ContactForm = ({ classes, data, onSave, onCancel, progress }) => {
     message: ''
   });
 
+  // If data not null or undefined, set the state to this data on mount
   useEffect(() => {
     if (data) {
       setFormData({
@@ -72,6 +75,7 @@ const ContactForm = ({ classes, data, onSave, onCancel, progress }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
+  // Function to validate the inputs, if there is an error, display it by updating the state
   const inputsValidation = () => {
     let valid = true;
     if (isEmpty(formData.firstName)) {

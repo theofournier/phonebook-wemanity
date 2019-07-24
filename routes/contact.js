@@ -13,7 +13,7 @@ const contactValidation = [
 ]
 
 // @route   POST api/contact
-// @desc    Register a contact
+// @desc    Register a contact and return the new contact
 router.post(
   '/',
   contactValidation,
@@ -52,6 +52,7 @@ router.get('/', async (req, res) => {
     skip: parseInt(skip),
     limit: parseInt(limit)
   };
+  // sort format: key1:value1,key2:value2...
   if (sort) {
     const sortArr = sort.split(',');
     const optionsSort = {};

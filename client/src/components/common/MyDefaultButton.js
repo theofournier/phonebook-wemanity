@@ -41,6 +41,7 @@ const MyDefaultButton = (props) => {
     classes, className, onClick, to, component, variant, disabled,
   } = props;
 
+  // Get the style depending on the variant
   const classVariant = variant ? classes[variant] : classes.default;
 
   return (

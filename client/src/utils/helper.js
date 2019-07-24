@@ -20,6 +20,7 @@ export function dateFormatting(dateStr) {
     : '';
 }
 
+// Check in an object, for each properties contained in searchKeys, if searchValue is contained in the properties
 export function checkInclude(element, searchValue, searchKeys) {
   for (const k of searchKeys) {
     if (
@@ -35,6 +36,7 @@ export function checkInclude(element, searchValue, searchKeys) {
   return false;
 }
 
+// Return a list filtered thanks to checkInclude function and a search value
 export function search(listToSearch, searchValue, searchKeys) {
   try {
     const listTemp = [...listToSearch];

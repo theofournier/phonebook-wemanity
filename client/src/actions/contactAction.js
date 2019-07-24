@@ -13,7 +13,7 @@ import { search } from '../utils/helper';
 import { contactSearchKeys } from '../utils/config';
 import { setAlert } from './alertAction';
 
-// Get contacts
+// Get contacts, and set loading
 export const getContacts = () => async dispatch => {
   dispatch(setLoading(true, 'contacts'));
   try {
@@ -49,6 +49,7 @@ export const getContact = (_id) => async dispatch => {
   dispatch(setLoading(false, 'contact'));
 };
 
+// Set the contact to edit
 export const setContact = (contact) => dispatch => {
   dispatch({
     type: GET_CONTACT,
@@ -57,6 +58,7 @@ export const setContact = (contact) => dispatch => {
 }
 
 // Add contacts
+// Send alert if success or error
 export const addContact = (contact, callbackSucces) => async dispatch => {
   dispatch(setLoading(true, 'addContact'));
   try {
@@ -77,6 +79,7 @@ export const addContact = (contact, callbackSucces) => async dispatch => {
 };
 
 // Update contact
+// Send alert if success or error
 export const updateContact = (id, contact, callbackSucces) => async dispatch => {
   dispatch(setLoading(true, 'updateContact'));
   try {
@@ -97,6 +100,7 @@ export const updateContact = (id, contact, callbackSucces) => async dispatch => 
 };
 
 // Delete contact
+// Send alert if success or error
 export const deleteContact = (id, callbackSucces) => async dispatch => {
   dispatch(setLoading(true, 'deleteContact'));
   try {
@@ -116,7 +120,7 @@ export const deleteContact = (id, callbackSucces) => async dispatch => {
   dispatch(setLoading(false, 'deleteContact'));
 };
 
-
+// Set the loading and error for a particular field
 export const setLoading = (loading, field) => {
   return {
     type: CONTACT_LOADING,
@@ -138,6 +142,8 @@ export const setError = (hasFailed, status, message, field) => {
   };
 }
 
+// Search contacts thanks to the searchvalue
+// ContactSearchKeys are the keys of the contact object that we want to search (firstName, lastName, phone)
 export const filterContacts = (
   contacts,
   searchValue,

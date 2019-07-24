@@ -39,6 +39,7 @@ const styles = (theme) => ({
 });
 
 const UpdateContact = ({ classes, updateContact, getContact, setContact, contact: { contact, loading, errors }, match, location }) => {
+  // On component mount, if location state from Home page is null, get the contact from API
   useEffect(() => {
     if (location.state) {
       setContact(location.state);
@@ -49,6 +50,7 @@ const UpdateContact = ({ classes, updateContact, getContact, setContact, contact
 
   const [backHome, setBackHome] = useState(false);
 
+  // When click on cancel button, change state and Redirect
   if (backHome) {
     return <Redirect to='/' />
   }

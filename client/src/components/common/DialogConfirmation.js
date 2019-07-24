@@ -8,6 +8,8 @@ import {
 const styles = (theme) => ({
 });
 
+// Component Dialog with 2 buttons : confirm and cancel
+
 const DialogConfirmation = ({ handleCancel, handleConfirm, dialogOpen, title, textContent }) => {
 
   return (

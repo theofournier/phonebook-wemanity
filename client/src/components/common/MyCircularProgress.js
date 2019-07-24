@@ -6,7 +6,7 @@ import { colors } from '../../utils/config';
 
 const styles = (theme) => ({
   progress: {
-    margin: 'auto',
+    margin: '0 auto',
     color: colors.primary,
   },
 });

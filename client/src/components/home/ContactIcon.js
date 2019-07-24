@@ -16,6 +16,7 @@ const styles = (theme) => ({
   }
 });
 
+// Circle div
 const ContactIcon = ({ classes, children }) => {
   return (
     <div className={classes.mainContainer}>

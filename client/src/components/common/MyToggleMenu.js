@@ -11,6 +11,8 @@ const styles = (theme) => ({
   },
 });
 
+// Popper menu
+// AnchorEl is the component that the popper belong to
 const MyToggleMenu = ({ classes, handleClose, isMenuOpen, anchorEl, classeNamePaper, children }) => {
   return (
     <div className={classes.root}>

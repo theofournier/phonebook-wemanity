@@ -45,10 +45,7 @@ const styles = (theme) => ({
   },
 });
 
-function MySnackbarContent(props) {
-  const {
-    classes, className, message, onClose, variant, ...other
-  } = props;
+const MySnackbarContent = ({ classes, className, message, onClose, variant, ...other }) => {
   const Icon = variantIcon[variant];
 
   return (

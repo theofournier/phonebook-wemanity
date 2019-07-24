@@ -58,6 +58,7 @@ const styles = (theme) => ({
   },
 });
 
+// Component displayed in the contact list
 const ContactItem = ({ classes, deleteContact, getContacts, data: { _id, firstName, lastName, phone, dateAdd } }) => {
   const [anchorElContact, setAnchorElContact] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);

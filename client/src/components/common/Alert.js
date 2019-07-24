@@ -15,6 +15,7 @@ const Alert = ({ alert, removeAlert }) => {
 
   if (alert !== null && alert.length > 0) {
     return (
+      // Display all the alert contained in Redux store
       alert.map(alert => (
         <Snackbar
           key={alert.id}
