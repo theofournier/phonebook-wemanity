@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { phoneRegex } from './config';
 
 export function isEmpty(value) {
   return (
@@ -10,7 +11,7 @@ export function isEmpty(value) {
 }
 
 export function isValidPhone(phone) {
-  return phone.match('\\+[0-9]{2}\\s[0-9]{2}\\s[0-9]{6,}');
+  return phone.match(phoneRegex);
 }
 
 export function dateFormatting(dateStr) {

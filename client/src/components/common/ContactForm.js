@@ -43,7 +43,7 @@ const ContactForm = ({ classes, data, onSave, onCancel, progress }) => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    phone: ''
+    phone: '+'
   });
   const [firstNameError, setFirstNameError] = useState({
     error: false,
@@ -61,12 +61,12 @@ const ContactForm = ({ classes, data, onSave, onCancel, progress }) => {
   useEffect(() => {
     if (data) {
       setFormData({
-        firstName: data.firstName || '',
-        lastName: data.lastName || '',
-        phone: data.phone || '',
+        firstName: data.firstName || formData.firstName,
+        lastName: data.lastName || formData.lastName,
+        phone: data.phone || formData.phone,
       });
     }
-  }, [data]);
+  }, [data, formData.firstName, formData.lastName, formData.phone]);
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

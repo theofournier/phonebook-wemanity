@@ -6,3 +6,5 @@ export const colors = {
 }
 
 export const contactSearchKeys = ['firstName', 'lastName', 'phone'];
+
+export const phoneRegex = '\\+[0-9]{2}\\s[0-9]{2}\\s[0-9]{6,}';
