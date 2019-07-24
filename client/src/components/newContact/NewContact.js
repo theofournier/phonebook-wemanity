@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import ContactForm from '../common/ContactForm';
 import { addContact } from '../../actions/contactAction';
+import { colors } from '../../utils/config';
 
 const styles = (theme) => ({
   root: {
@@ -23,11 +24,15 @@ const styles = (theme) => ({
   },
   titlesContainer: {
     textAlign: 'center',
-    margin: '20px 0 30px 0',
+    margin: '30px 0 50px 0',
   },
   formContainer: {
     width: '300px'
   },
+  title: {
+    color: colors.primary,
+    fontWeight: 400
+  }
 });
 
 const NewContact = ({ classes, addContact, contact: { loading, errors } }) => {
@@ -40,7 +45,7 @@ const NewContact = ({ classes, addContact, contact: { loading, errors } }) => {
   return (
     <div className={classes.root}>
       <div className={classes.titlesContainer}>
-        <Typography variant='h3'>Add contact</Typography>
+        <Typography className={classes.title} variant='h3'>Add contact</Typography>
       </div>
       <div className={classes.formContainer}>
         <ContactForm

@@ -7,6 +7,7 @@ import { Typography } from '@material-ui/core';
 import ContactForm from '../common/ContactForm';
 import { updateContact, getContact, setContact } from '../../actions/contactAction';
 import MyCircularProgress from '../common/MyCircularProgress';
+import { colors } from '../../utils/config';
 
 const styles = (theme) => ({
   root: {
@@ -24,13 +25,17 @@ const styles = (theme) => ({
   },
   titlesContainer: {
     textAlign: 'center',
-    margin: '20px 0 30px 0',
+    margin: '30px 0 50px 0',
   },
   formContainer: {
     display: 'flex',
     flexDirection: 'column',
     width: '300px'
   },
+  title: {
+    color: colors.primary,
+    fontWeight: 400
+  }
 });
 
 const UpdateContact = ({ classes, updateContact, getContact, setContact, contact: { contact, loading, errors }, match, location }) => {
@@ -51,7 +56,7 @@ const UpdateContact = ({ classes, updateContact, getContact, setContact, contact
   return (
     <div className={classes.root}>
       <div className={classes.titlesContainer}>
-        <Typography variant='h3'>Update contact</Typography>
+        <Typography className={classes.title} variant='h3'>Update contact</Typography>
       </div>
       <div className={classes.formContainer}>
         {loading.contact ?

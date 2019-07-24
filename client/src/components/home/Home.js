@@ -10,6 +10,7 @@ import ContactItem from './ContactItem'
 import { isEmpty } from '../../utils/helper';
 import MyDefaultButton from '../common/MyDefaultButton';
 import MyCircularProgress from '../common/MyCircularProgress';
+import { colors } from '../../utils/config';
 
 const styles = (theme) => ({
   root: {
@@ -30,7 +31,9 @@ const styles = (theme) => ({
     margin: '20px 0 30px 0',
   },
   mainTitle: {
-    margin: '0 0 20px 0'
+    margin: '0 0 20px 0',
+    color: colors.primary,
+    fontWeight: 400
   },
   button: {
     margin: '0 0 20px',
